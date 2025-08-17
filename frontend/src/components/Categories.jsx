@@ -1,13 +1,22 @@
 import React from 'react';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 const Categories = ({ language }) => {
+  // Header banners matching the original
+  const headerBanners = [
+    { color: 'teal', text: 'CARITA' },
+    { color: 'purple', text: 'GAZAR' },
+    { color: 'coral', text: 'SATEEN' },
+    { color: 'green', text: 'LAVEEN' },
+    { color: 'burgundy', text: 'MAXI' }
+  ];
+
+  // Categories matching original 4x2 grid
   const categories = [
     {
       id: 1,
       name: "Summer Abayas",
-      nameAr: "عبايات صيفية",
-      image: "https://images.unsplash.com/photo-1728487235101-664d87965931?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwYWJheWElMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE1N3ww&ixlib=rb-4.1.0&q=85",
+      nameAr: "عبايات صيفية", 
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHxtb2Rlc3QlMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE2M3ww&ixlib=rb-4.1.0&q=85",
     },
     {
       id: 2,
@@ -17,9 +26,9 @@ const Categories = ({ language }) => {
     },
     {
       id: 3,
-      name: "Colored Abayas",
+      name: "Coloured Abayas",
       nameAr: "عبايات ملونة",
-      image: "https://images.pexels.com/photos/33476063/pexels-photo-33476063.jpeg",
+      image: "https://images.unsplash.com/photo-1724396641537-8909ef098187?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwzfHxlbGVnYW50JTIwYWJheWElMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE1N3ww&ixlib=rb-4.1.0&q=85",
     },
     {
       id: 4,
@@ -35,81 +44,99 @@ const Categories = ({ language }) => {
     },
     {
       id: 6,
+      name: "Inner Suits",
+      nameAr: "بدلات داخلية",
+      image: "https://images.pexels.com/photos/33476063/pexels-photo-33476063.jpeg",
+    },
+    {
+      id: 7,
       name: "Work Abayas",
       nameAr: "عبايات دوام",
-      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHxtb2Rlc3QlMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE2M3ww&ixlib=rb-4.1.0&q=85",
+      image: "https://images.unsplash.com/photo-1626386699888-b8865823b279?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHxtb2Rlc3QlMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE2M3ww&ixlib=rb-4.1.0&q=85",
+    },
+    {
+      id: 8,
+      name: "All Products",
+      nameAr: "جميع المنتجات",
+      image: "https://images.unsplash.com/photo-1728487235101-664d87965931?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwYWJheWElMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE1N3ww&ixlib=rb-4.1.0&q=85",
     }
   ];
 
+  const getBannerColor = (color) => {
+    const colors = {
+      teal: 'bg-teal-500',
+      purple: 'bg-purple-500', 
+      coral: 'bg-orange-400',
+      green: 'bg-green-500',
+      burgundy: 'bg-red-900'
+    };
+    return colors[color] || 'bg-gray-500';
+  };
+
   return (
-    <section className="py-16 bg-white">
+    <section className="py-8 bg-white">
       <div className="container mx-auto px-4">
-        {/* Section Header - exact match */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        {/* Header banners - exact match */}
+        <div className="flex justify-center gap-4 mb-8">
+          {headerBanners.map((banner, index) => (
+            <div 
+              key={index}
+              className={`${getBannerColor(banner.color)} text-white px-6 py-2 text-sm font-bold transform -skew-x-12`}
+            >
+              <span className="transform skew-x-12 block">{banner.text}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Categories Section Header */}
+        <div className="text-left mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
             {language === 'ar' ? (
               <span className="font-arabic">أقسام المتجر</span>
             ) : (
-              'Shop Categories'
+              'Categories'
             )}
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600">
             {language === 'ar' ? (
               <span className="font-arabic">صممت عبايات لاڤين لتناسب أناقتك</span>
             ) : (
-              'Laveen abayas designed to match your elegance'
+              "Laveen Abaya's is devoted to fit your elegance"
             )}
           </p>
         </div>
 
-        {/* Categories Grid - mimicking original layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Categories Grid - exact 4x2 layout like original */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {categories.map((category) => (
             <div 
               key={category.id} 
-              className="group cursor-pointer bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
+              className="group cursor-pointer relative"
             >
               {/* Category Image */}
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative h-64 overflow-hidden rounded-lg">
                 <img
                   src={category.image}
                   alt={language === 'ar' ? category.nameAr : category.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-opacity duration-300"></div>
+                {/* Gold badge - exact match */}
+                <div className="absolute top-3 right-3 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                  <div className="w-6 h-6 border-2 border-yellow-600 rounded-full flex items-center justify-center">
+                    <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
+                  </div>
+                </div>
               </div>
 
-              {/* Category Info */}
-              <div className="p-4 text-center">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              {/* Category Name */}
+              <div className="text-center mt-3">
+                <h3 className="text-sm font-medium text-gray-900">
                   {language === 'ar' ? category.nameAr : category.name}
                 </h3>
-                
-                <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200 flex items-center justify-center w-full">
-                  {language === 'ar' ? 'تسوق الآن' : 'Shop Now'}
-                  {language === 'ar' ? (
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                  ) : (
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  )}
-                </button>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* View All Products Button */}
-        <div className="text-center mt-12">
-          <button className="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200">
-            {language === 'ar' ? 'عرض جميع المنتجات' : 'View All Products'}
-            {language === 'ar' ? (
-              <ArrowLeft className="mr-2 h-5 w-5 inline" />
-            ) : (
-              <ArrowRight className="ml-2 h-5 w-5 inline" />
-            )}
-          </button>
         </div>
       </div>
     </section>
