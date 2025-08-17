@@ -3,7 +3,7 @@ import { Toaster } from './components/ui/toaster';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Categories from './components/Categories';
-import FeaturedProducts from './components/FeaturedProducts';
+import LatestModels from './components/LatestModels';
 import StoreFeatures from './components/StoreFeatures';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
@@ -19,7 +19,7 @@ function App() {
       <main>
         <Hero language={language} />
         <Categories language={language} />
-        <FeaturedProducts language={language} />
+        <LatestModels language={language} />
         <StoreFeatures language={language} />
         <Testimonials language={language} />
         <FAQ language={language} />

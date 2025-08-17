@@ -1,23 +1,59 @@
 import React from 'react';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
-import { Button } from './ui/button';
-import { Card, CardContent } from './ui/card';
-import { categories } from '../data/mock';
 
 const Categories = ({ language }) => {
+  const categories = [
+    {
+      id: 1,
+      name: "Summer Abayas",
+      nameAr: "عبايات صيفية",
+      image: "https://images.unsplash.com/photo-1728487235101-664d87965931?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwYWJheWElMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE1N3ww&ixlib=rb-4.1.0&q=85",
+    },
+    {
+      id: 2,
+      name: "Winter Abayas",
+      nameAr: "عبايات شتوية",
+      image: "https://images.unsplash.com/photo-1752794966299-1fd0ccade152?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwyfHxlbGVnYW50JTIwYWJheWElMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE1N3ww&ixlib=rb-4.1.0&q=85",
+    },
+    {
+      id: 3,
+      name: "Colored Abayas",
+      nameAr: "عبايات ملونة",
+      image: "https://images.pexels.com/photos/33476063/pexels-photo-33476063.jpeg",
+    },
+    {
+      id: 4,
+      name: "Black Abayas",
+      nameAr: "عبايات سوداء",
+      image: "https://images.unsplash.com/photo-1668028554553-f83cac89ce0f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHw0fHxtb2Rlc3QlMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE2M3ww&ixlib=rb-4.1.0&q=85",
+    },
+    {
+      id: 5,
+      name: "Inner Dresses",
+      nameAr: "فساتين داخلية",
+      image: "https://images.pexels.com/photos/33476054/pexels-photo-33476054.jpeg",
+    },
+    {
+      id: 6,
+      name: "Work Abayas",
+      nameAr: "عبايات دوام",
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHxtb2Rlc3QlMjBmYXNoaW9ufGVufDB8fHx8MTc1NTQzMzE2M3ww&ixlib=rb-4.1.0&q=85",
+    }
+  ];
+
   return (
-    <section id="categories" className="py-20 bg-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className={`text-center mb-16 ${language === 'ar' ? 'text-right' : ''}`}>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+        {/* Section Header - exact match */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
             {language === 'ar' ? (
               <span className="font-arabic">أقسام المتجر</span>
             ) : (
               'Shop Categories'
             )}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg">
             {language === 'ar' ? (
               <span className="font-arabic">صممت عبايات لاڤين لتناسب أناقتك</span>
             ) : (
@@ -26,69 +62,54 @@ const Categories = ({ language }) => {
           </p>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((category, index) => (
-            <Card 
+        {/* Categories Grid - mimicking original layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((category) => (
+            <div 
               key={category.id} 
-              className="group cursor-pointer overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
+              className="group cursor-pointer bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
             >
-              <CardContent className="p-0 relative">
-                {/* Category Image */}
-                <div className="relative h-80 overflow-hidden">
-                  <img
-                    src={category.image}
-                    alt={language === 'ar' ? category.nameAr : category.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
-                  
-                  {/* Product count badge */}
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-900 px-3 py-1 rounded-full text-sm font-semibold">
-                    {category.productCount} {language === 'ar' ? 'منتج' : 'items'}
-                  </div>
-                </div>
+              {/* Category Image */}
+              <div className="relative h-80 overflow-hidden">
+                <img
+                  src={category.image}
+                  alt={language === 'ar' ? category.nameAr : category.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-opacity duration-300"></div>
+              </div>
 
-                {/* Category Info */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white p-6">
-                  <h3 className="text-2xl font-bold mb-2">
-                    {language === 'ar' ? category.nameAr : category.name}
-                  </h3>
-                  
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    className="text-white hover:text-black hover:bg-white p-0 h-auto font-semibold transition-all duration-300 group-hover:translate-x-1"
-                  >
-                    {language === 'ar' ? 'تسوق الآن' : 'Shop Now'}
-                    {language === 'ar' ? (
-                      <ArrowLeft className="mr-2 h-4 w-4" />
-                    ) : (
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+              {/* Category Info */}
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {language === 'ar' ? category.nameAr : category.name}
+                </h3>
+                
+                <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200 flex items-center justify-center w-full">
+                  {language === 'ar' ? 'تسوق الآن' : 'Shop Now'}
+                  {language === 'ar' ? (
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                  ) : (
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  )}
+                </button>
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* View All Button */}
+        {/* View All Products Button */}
         <div className="text-center mt-12">
-          <Button 
-            size="lg"
-            variant="outline"
-            className="border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300"
-          >
+          <button className="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200">
             {language === 'ar' ? 'عرض جميع المنتجات' : 'View All Products'}
             {language === 'ar' ? (
-              <ArrowLeft className="mr-2 h-5 w-5" />
+              <ArrowLeft className="mr-2 h-5 w-5 inline" />
             ) : (
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-5 w-5 inline" />
             )}
-          </Button>
+          </button>
         </div>
       </div>
     </section>
